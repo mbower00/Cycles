@@ -1,8 +1,8 @@
-using Unit05.Game.Casting;
-using Unit05.Game.Services;
+using cse210_cycles.Game.Casting;
+using cse210_cycles.Game.Services;
 
 
-namespace Unit05.Game.Scripting
+namespace cse210_cycles.Game.Scripting
 {
     /// <summary>
     /// <para>An input action that controls the snake.</para>
@@ -50,8 +50,8 @@ namespace Unit05.Game.Scripting
                 direction = new Point(0, Constants.CELL_SIZE);
             }
 
-            Snake snake = (Snake)cast.GetFirstActor("snake");
-            snake.TurnHead(direction);
+            Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+            cycle.TurnHead(direction);
 
         }
     }

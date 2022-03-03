@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Raylib_cs;
-using Unit05.Game.Casting;
+using cse210_cycles.Game.Casting;
 
 
-namespace Unit05.Game.Services
+namespace cse210_cycles.Game.Services
 {
     /// <summary>
     /// <para>Detects player input.</para>

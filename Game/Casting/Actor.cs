@@ -1,7 +1,7 @@
 using System;
 
 
-namespace Unit05.Game.Casting
+namespace cse210_cycles.Game.Casting
 {
     /// <summary>
     /// <para>A thing that participates in the game.</para>

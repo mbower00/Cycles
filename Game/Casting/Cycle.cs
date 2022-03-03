@@ -2,21 +2,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Unit05.Game.Casting
+namespace cse210_cycles.Game.Casting
 {
     /// <summary>
     /// <para>A long limbless reptile.</para>
     /// <para>The responsibility of Snake is to move itself.</para>
     /// </summary>
-    public class Snake : Actor
+    public class Cycle : Actor
     {
         private List<Actor> segments = new List<Actor>();
+        private bool isIncognito = false;
+        private bool isDrawing = true;
+        private int jumpCooldownTick = 0;
+        private Color trailColor;
+        
 
         /// <summary>
         /// Constructs a new instance of a Snake.
         /// </summary>
-        public Snake()
+        public Cycle(Color color)
         {
+            SetColor(color);
+            trailColor = GetColor();
             PrepareBody();
         }
 
@@ -55,16 +62,16 @@ namespace Unit05.Game.Casting
         {
             for (int i = 0; i < numberOfSegments; i++)
             {
-                Actor tail = segments.Last<Actor>();
-                Point velocity = tail.GetVelocity();
+                Actor cycle = GetHead();
+                Point velocity = cycle.GetVelocity();
                 Point offset = velocity.Reverse();
-                Point position = tail.GetPosition().Add(offset);
+                Point position = cycle.GetPosition().Add(offset);
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);
                 segment.SetVelocity(velocity);
                 segment.SetText("#");
-                segment.SetColor(Constants.GREEN);
+                segment.SetColor(trailColor);
                 segments.Add(segment);
             }
         }
@@ -72,18 +79,11 @@ namespace Unit05.Game.Casting
         /// <inheritdoc/>
         public override void MoveNext()
         {
-            foreach (Actor segment in segments)
-            {
-                segment.MoveNext();
-            }
-
-            for (int i = segments.Count - 1; i > 0; i--)
-            {
-                Actor trailing = segments[i];
-                Actor previous = segments[i - 1];
-                Point velocity = previous.GetVelocity();
-                trailing.SetVelocity(velocity);
-            }
+            if (jumpCooldownTick >= Constants.JUMP_COOLDOWN_CONDITION){SetColor(trailColor);} //if ready to jump, set color to the trail color
+            else{SetColor(Constants.WHITE);} //if NOT ready to jump, set color to white
+            segments[0].MoveNext();
+            if (isDrawing){GrowTail(1);} //if drawing, add a segment
+            jumpCooldownTick++;
         }
 
         /// <summary>
@@ -103,12 +103,12 @@ namespace Unit05.Game.Casting
             int x = Constants.MAX_X / 2;
             int y = Constants.MAX_Y / 2;
 
-            for (int i = 0; i < Constants.SNAKE_LENGTH; i++)
+            for (int i = 0; i < Constants.CYCLE_START_LENGTH; i++)
             {
                 Point position = new Point(x - i * Constants.CELL_SIZE, y);
                 Point velocity = new Point(1 * Constants.CELL_SIZE, 0);
-                string text = i == 0 ? "8" : "#";
-                Color color = i == 0 ? Constants.YELLOW : Constants.GREEN;
+                string text = i == 0 ? "@" : "#";
+                Color color = i == 0 ? GetColor() : trailColor;
 
                 Actor segment = new Actor();
                 segment.SetPosition(position);
@@ -117,6 +117,31 @@ namespace Unit05.Game.Casting
                 segment.SetColor(color);
                 segments.Add(segment);
             }
+        }
+
+
+        private void SetIsDrawing(bool isDrawing){
+            this.isDrawing = isDrawing;
+        }
+
+        private bool GetIsDrawing(){
+            return isDrawing;
+        }
+
+        private void SetIsIncognito(bool isIncognito){
+            this.isIncognito = isIncognito;
+        }
+
+        private bool GetIsIncognito(){
+            return isIncognito;
+        }
+
+        private void SetJumpCooldownTick(int jumpCooldownTick){
+            this.jumpCooldownTick = jumpCooldownTick;
+        }
+
+        private int GetJumpCooldownTick(){
+            return jumpCooldownTick;
         }
     }
 }

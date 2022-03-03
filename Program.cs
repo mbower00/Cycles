@@ -1,10 +1,10 @@
-﻿using Unit05.Game.Casting;
-using Unit05.Game.Directing;
-using Unit05.Game.Scripting;
-using Unit05.Game.Services;
+﻿using cse210_cycles.Game.Casting;
+using cse210_cycles.Game.Directing;
+using cse210_cycles.Game.Scripting;
+using cse210_cycles.Game.Services;
 
 
-namespace Unit05
+namespace cse210_cycles
 {
     /// <summary>
     /// The program's entry point.
