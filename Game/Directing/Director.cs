@@ -53,7 +53,8 @@ namespace cse210_cycles.Game.Directing
             List<Action> actions = script.GetActions(group);
             foreach(Action action in actions)
             {
-                action.Execute(cast, script);
+                action.Execute(cast, script, "player1");
+                action.Execute(cast, script, "player2");
             }
         }
     }

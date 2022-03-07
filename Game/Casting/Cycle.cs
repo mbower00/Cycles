@@ -13,7 +13,7 @@ namespace cse210_cycles.Game.Casting
         private List<Actor> segments = new List<Actor>();
         private bool isIncognito = false;
         private bool isDrawing = true;
-        private int jumpCooldownTick = 0;
+        private int jumpCooldownTick = Constants.JUMP_COOLDOWN_CONDITION; //starts ready to jump
         private Color trailColor;
         
 
@@ -81,6 +81,11 @@ namespace cse210_cycles.Game.Casting
         {
             if (jumpCooldownTick >= Constants.JUMP_COOLDOWN_CONDITION){SetColor(trailColor);} //if ready to jump, set color to the trail color
             else{SetColor(Constants.WHITE);} //if NOT ready to jump, set color to white
+            
+            if (jumpCooldownTick){
+
+            }
+
             segments[0].MoveNext();
             if (isDrawing){GrowTail(1);} //if drawing, add a segment
             jumpCooldownTick++;

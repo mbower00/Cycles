@@ -26,13 +26,13 @@ namespace cse210_cycles.Game.Scripting
         }
 
         /// <inheritdoc/>
-        public void Execute(Cast cast, Script script)
+        public void Execute(Cast cast, Script script, string player)
         {
             if (isGameOver == false)
             {
-                HandleFoodCollisions(cast);
-                HandleSegmentCollisions(cast);
-                HandleGameOver(cast);
+                HandleFoodCollisions(cast, player);
+                HandleSegmentCollisions(cast, player);
+                HandleGameOver(cast, player);
             }
         }
 
@@ -40,7 +40,7 @@ namespace cse210_cycles.Game.Scripting
         /// Updates the score nd moves the food if the snake collides with it.
         /// </summary>
         /// <param name="cast">The cast of actors.</param>
-        private void HandleFoodCollisions(Cast cast)
+        private void HandleFoodCollisions(Cast cast, string player)
         {
             Snake snake = (Snake)cast.GetFirstActor("snake");
             Score score = (Score)cast.GetFirstActor("score");
@@ -59,11 +59,17 @@ namespace cse210_cycles.Game.Scripting
         /// Sets the game over flag if the snake collides with one of its segments.
         /// </summary>
         /// <param name="cast">The cast of actors.</param>
-        private void HandleSegmentCollisions(Cast cast)
+        private void HandleSegmentCollisions(Cast cast, string player)
         {
-            Snake snake = (Snake)cast.GetFirstActor("snake");
-            Actor head = snake.GetHead();
-            List<Actor> body = snake.GetBody();
+            
+            if (player == "player1"){
+                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+            }
+            else if (player == "player2"){
+                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
+            }
+            Actor head = cycle.GetHead();
+            List<Actor> body = cycle.GetBody();
 
             foreach (Actor segment in body)
             {
@@ -74,7 +80,7 @@ namespace cse210_cycles.Game.Scripting
             }
         }
 
-        private void HandleGameOver(Cast cast)
+        private void HandleGameOver(Cast cast, string player)
         {
             if (isGameOver == true)
             {

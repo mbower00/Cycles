@@ -87,6 +87,24 @@ namespace cse210_cycles.Game.Casting
         }
 
         /// <summary>
+        /// Gets the second actor in the given group.
+        /// </summary>
+        /// <param name="group">The group name.</param>
+        /// <returns>The second actor.</returns>
+        public Actor GetSecondActor(string group)
+        {
+            Actor result = null;
+            if (actors.ContainsKey(group))
+            {
+                if (actors[group].Count > 0)
+                {
+                    result = actors[group][1];
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Removes the given actor from the given group.
         /// </summary>
         /// <param name="group">The group name.</param>

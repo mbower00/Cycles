@@ -15,13 +15,24 @@ namespace cse210_cycles
         /// Starts the program using the given arguments.
         /// </summary>
         /// <param name="args">The given arguments.</param>
+
         static void Main(string[] args)
         {
-            // create the cast
+
+            SoundService ss = new SoundService();
+            string filename = "Game/Services/roblox-death-sound_1.mp3" ;
+            ss.PlaySound(filename) 
+                                     
+            // Just a test - for now
+            Color player1 = new Color(255,0,0);
+            Color player2 = new Color(0,0,255);
+            
+            // create the cast 
             Cast cast = new Cast();
-            cast.AddActor("food", new Food());
-            cast.AddActor("snake", new Snake());
-            cast.AddActor("score", new Score());
+            // cast.AddActor("food", new Food());
+            cast.AddActor("cycle", new Cycle(player1));
+            cast.AddActor("cycle", new Cycle(player2));
+            // cast.AddActor("score", new Score());
 
             // create the services
             KeyboardService keyboardService = new KeyboardService();

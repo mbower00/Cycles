@@ -25,6 +25,7 @@ namespace cse210_cycles.Game.Services
             keys["a"] = KeyboardKey.KEY_A;
             keys["s"] = KeyboardKey.KEY_S;
             keys["d"] = KeyboardKey.KEY_D;
+
             keys["i"] = KeyboardKey.KEY_I;
             keys["j"] = KeyboardKey.KEY_J;
             keys["k"] = KeyboardKey.KEY_K;

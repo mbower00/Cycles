@@ -22,10 +22,17 @@ namespace cse210_cycles.Game.Scripting
         }
 
         /// <inheritdoc/> 
-        public void Execute(Cast cast, Script script)
+        public void Execute(Cast cast, Script script, string player)
         {
-            Snake snake = (Snake)cast.GetFirstActor("snake");
-            List<Actor> segments = snake.GetSegments();
+            // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
+            if(player == "player1"){
+                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+                return cycle;}
+            else if(player == "player2"){
+                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
+                return cycle;
+            }
+            List<Actor> segments = cycle.GetSegments();
             Actor score = cast.GetFirstActor("score");
             Actor food = cast.GetFirstActor("food");
             List<Actor> messages = cast.GetActors("messages");
