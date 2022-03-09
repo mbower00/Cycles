@@ -4,12 +4,12 @@ using System.Collections.Generic;
 
 namespace cse210_cycles.Game.Services
 {
-    public class AudioService
+    public class SoundService
     {
         private Dictionary<string, Raylib_cs.Sound> _sounds
             = new Dictionary<string, Raylib_cs.Sound>();
 
-        public AudioService()
+        public SoundService()
         {
         }
 

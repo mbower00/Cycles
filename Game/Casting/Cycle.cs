@@ -81,9 +81,12 @@ namespace cse210_cycles.Game.Casting
         {
             if (jumpCooldownTick >= Constants.JUMP_COOLDOWN_CONDITION){SetColor(trailColor);} //if ready to jump, set color to the trail color
             else{SetColor(Constants.WHITE);} //if NOT ready to jump, set color to white
-            
-            if (jumpCooldownTick){
 
+            if (jumpCooldownTick > Constants.JUMP_FRAME_DURATION){
+                this.SetFontSize(this.GetFontSize() + 10);
+            }
+            else{
+                this.SetFontSize(Constants.FONT_SIZE);
             }
 
             segments[0].MoveNext();
@@ -126,11 +129,11 @@ namespace cse210_cycles.Game.Casting
         }
 
 
-        public void SetIsDrawing(bool isDrawing){
+        public void SetDrawing(bool isDrawing){
             this.isDrawing = isDrawing;
         }
 
-        public bool GetIsDrawing(){
+        public bool IsDrawing(){
             return isDrawing;
         }
 

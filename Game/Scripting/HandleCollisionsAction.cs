@@ -30,12 +30,13 @@ namespace cse210_cycles.Game.Scripting
         {
             if (isGameOver == false)
             {
-                HandleFoodCollisions(cast, player);
+                // HandleFoodCollisions(cast, player);
                 HandleSegmentCollisions(cast, player);
                 HandleGameOver(cast, player);
             }
         }
 
+/*  This is the food enlargemrnt code
         /// <summary>
         /// Updates the score nd moves the food if the snake collides with it.
         /// </summary>
@@ -54,6 +55,7 @@ namespace cse210_cycles.Game.Scripting
                 food.Reset();
             }
         }
+*/
 
         /// <summary>
         /// Sets the game over flag if the snake collides with one of its segments.
@@ -61,11 +63,7 @@ namespace cse210_cycles.Game.Scripting
         /// <param name="cast">The cast of actors.</param>
         private void HandleSegmentCollisions(Cast cast, string player)
         {
-<<<<<<< HEAD
             
-=======
-            // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
->>>>>>> f5d3127973fa605d2a77018fef2bae842c92e947
             Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
             Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
             Cycle cycle = cycle1;
@@ -76,15 +74,33 @@ namespace cse210_cycles.Game.Scripting
                 cycle = cycle2;
             }
             Actor head = cycle.GetHead();
-            List<Actor> body = cycle.GetBody();
+            List<Actor> bodies = cycle1.GetBody();
+            List<Actor> body2 = cycle2.GetBody();
+            bodies.AddRange(body2);
+            //Actor head2 = cycle2.GetHead();
 
-            foreach (Actor segment in body)
+            foreach (Actor segment in bodies)
             {
-                if (segment.GetPosition().Equals(head.GetPosition()))
+                if (segment.GetPosition().Equals(head.GetPosition()) && !cycle.GetIsIncognito())
                 {
                     isGameOver = true;
                 }
+                //else if (segment.GetPosition().Equals(head2.GetPosition()))
+                //{
+                //    isGameOver = true;
+                //}
             }
+            //foreach (Actor segment in bodies)
+            //{
+            //    if (segment.GetPosition().Equals(head.GetPosition()))
+            //    {
+            //        isGameOver = true;
+            //    }
+                //else if (segment.GetPosition().Equals(head2.GetPosition()))
+                //{
+                //    isGameOver = true;
+                //}
+            // }
         }
 
         private void HandleGameOver(Cast cast, string player)
@@ -100,8 +116,9 @@ namespace cse210_cycles.Game.Scripting
                 else if (player == "player2"){
                     cycle = cycle2;
                 }
-                List<Actor> segments = snake.GetSegments();
-                Food food = (Food)cast.GetFirstActor("food");
+                List<Actor> segments1 = cycle1.GetSegments();
+                List<Actor> segments2 = cycle2.GetSegments();
+                // Food food = (Food)cast.GetFirstActor("food");
 
                 // create a "game over" message
                 int x = Constants.MAX_X / 2;
@@ -114,11 +131,15 @@ namespace cse210_cycles.Game.Scripting
                 cast.AddActor("messages", message);
 
                 // make everything white
-                foreach (Actor segment in segments)
+                foreach (Actor segment in segments1)
                 {
                     segment.SetColor(Constants.WHITE);
                 }
-                food.SetColor(Constants.WHITE);
+                foreach (Actor segment in segments2)
+                {
+                    segment.SetColor(Constants.WHITE);
+                }
+                // food.SetColor(Constants.WHITE);
             }
         }
 

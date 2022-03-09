@@ -17,16 +17,33 @@ namespace cse210_cycles.Game.Scripting
         public void Execute(Cast cast, Script script, string player)
         {
             // Cycle cycle = (Cycle)cast.GetFirstActor("Cycle"); //Original Code
+            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+            Cycle cycle = cycle1;
             if (player == "player1"){
-                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+                cycle = cycle1;
             }
             else if (player == "player2"){
-                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
+                cycle = cycle2;
             }
             
             if (keyboardService.IsKeyDown("e") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
             {
-                
+                cycle.SetDrawing(false);
+                cycle.SetIsIncognito(true);
+                cycle.SetJumpCooldownTick(0);
+            }
+
+             if (keyboardService.IsKeyDown("u") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
+            {
+                cycle.SetDrawing(false);
+                cycle.SetIsIncognito(true);
+                cycle.SetJumpCooldownTick(0);
+            }
+
+            if (cycle.GetJumpCooldownTick() > Constants.JUMP_FRAME_DURATION){
+                cycle.SetDrawing(true);
+                cycle.SetIsIncognito(false);
             }
         }
 

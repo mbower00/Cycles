@@ -27,7 +27,7 @@ namespace cse210_cycles.Game.Scripting
 
     // 3) Override the Execute(Cast cast, Script script) method. Use the following 
     //    method comment. You custom implementation should do the following:
-        public void Execute(Cast cast, Script script){
+        public void Execute(Cast cast, Script script, string player){
             // a) get all the actors from the cast
             List<Actor> actors = cast.GetAllActors();
             // b) loop through all the actors

@@ -19,9 +19,9 @@ namespace cse210_cycles
         static void Main(string[] args)
         {
 
-            SoundService ss = new SoundService();
-            string filename = "Game/Services/roblox-death-sound_1.mp3" ;
-            ss.PlaySound(filename) 
+            //SoundService ss = new SoundService();
+            //string filename = "Game/Services/roblox-death-sound_1.mp3" ;
+            //ss.PlaySound(filename); 
                                      
             // Just a test - for now
             Color player1 = new Color(255,0,0);
@@ -40,7 +40,8 @@ namespace cse210_cycles
            
             // create the script
             Script script = new Script();
-            script.AddAction("input", new ControlActorsAction(keyboardService));
+            script.AddAction("input", new SteerActorsAction(keyboardService));
+            script.AddAction("input", new JumpActorAction(keyboardService));
             script.AddAction("update", new MoveActorsAction());
             script.AddAction("update", new HandleCollisionsAction());
             script.AddAction("output", new DrawActorsAction(videoService));

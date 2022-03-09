@@ -10,7 +10,7 @@ namespace cse210_cycles.Game.Scripting
     /// The responsibility of ControlActorsAction is to get the direction and move the snake's head.
     /// </para>
     /// </summary>
-    public class ControlActorsAction : Action
+    public class SteerActorsAction : Action
     {
         private KeyboardService keyboardService;
         private Point direction = new Point(Constants.CELL_SIZE, 0);
@@ -18,7 +18,7 @@ namespace cse210_cycles.Game.Scripting
         /// <summary>
         /// Constructs a new instance of ControlActorsAction using the given KeyboardService.
         /// </summary>
-        public ControlActorsAction(KeyboardService keyboardService)
+        public SteerActorsAction(KeyboardService keyboardService)
         {
             this.keyboardService = keyboardService;
         }
@@ -26,26 +26,50 @@ namespace cse210_cycles.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script, string player)
         {
-            // left
+            // left 1
             if (keyboardService.IsKeyDown("a"))
             {
                 direction = new Point(-Constants.CELL_SIZE, 0);
             }
 
-            // right
+            // right 1
             if (keyboardService.IsKeyDown("d"))
             {
                 direction = new Point(Constants.CELL_SIZE, 0);
             }
 
-            // up
+            // up 1
             if (keyboardService.IsKeyDown("w"))
             {
                 direction = new Point(0, -Constants.CELL_SIZE);
             }
 
-            // down
+            // down 1
             if (keyboardService.IsKeyDown("s"))
+            {
+                direction = new Point(0, Constants.CELL_SIZE);
+            }
+            
+            // left 2
+            if (keyboardService.IsKeyDown("j"))
+            {
+                direction = new Point(-Constants.CELL_SIZE, 0);
+            }
+
+            // right 2
+            if (keyboardService.IsKeyDown("l"))
+            {
+                direction = new Point(Constants.CELL_SIZE, 0);
+            }
+
+            // up 2
+            if (keyboardService.IsKeyDown("i"))
+            {
+                direction = new Point(0, -Constants.CELL_SIZE);
+            }
+
+            // down 2
+            if (keyboardService.IsKeyDown("k"))
             {
                 direction = new Point(0, Constants.CELL_SIZE);
             }
