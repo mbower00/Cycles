@@ -24,7 +24,7 @@ namespace cse210_cycles.Game.Scripting
         }
 
         /// <inheritdoc/>
-        public void Execute(Cast cast, Script script)
+        public void Execute(Cast cast, Script script, string player)
         {
             // left
             if (keyboardService.IsKeyDown("a"))
@@ -50,7 +50,15 @@ namespace cse210_cycles.Game.Scripting
                 direction = new Point(0, Constants.CELL_SIZE);
             }
 
-            Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+            Cycle cycle = cycle1;
+            if (player == "player1"){
+                cycle = cycle1;
+            }
+            else if (player == "player2"){
+                cycle = cycle2;
+            }
             cycle.TurnHead(direction);
 
         }

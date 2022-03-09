@@ -145,7 +145,7 @@ namespace cse210_cycles.Game.Casting
             this.jumpCooldownTick = jumpCooldownTick;
         }
 
-        private int GetJumpCooldownTick(){
+        public int GetJumpCooldownTick(){
             return jumpCooldownTick;
         }
     }

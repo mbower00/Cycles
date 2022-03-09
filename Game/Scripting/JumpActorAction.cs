@@ -14,10 +14,17 @@ namespace cse210_cycles.Game.Scripting
             this.keyboardService = keyboardService;
         }
 
-        public void Execute(Cast cast, Script script)
+        public void Execute(Cast cast, Script script, string player)
         {
-            Cycle cycle = (Cycle)cast.GetFirstActor("Cycle");
-               if (keyboardService.IsKeyDown("e") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
+            // Cycle cycle = (Cycle)cast.GetFirstActor("Cycle"); //Original Code
+            if (player == "player1"){
+                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+            }
+            else if (player == "player2"){
+                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
+            }
+            
+            if (keyboardService.IsKeyDown("e") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
             {
                 
             }
