@@ -26,52 +26,55 @@ namespace cse210_cycles.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script, string player)
         {
-            // left 1
-            if (keyboardService.IsKeyDown("a"))
-            {
-                direction = new Point(-Constants.CELL_SIZE, 0);
-            }
+            if (player == "player1"){
+                // left 1
+                if (keyboardService.IsKeyDown("a"))
+                {
+                    direction = new Point(-Constants.CELL_SIZE, 0);
+                }
 
-            // right 1
-            if (keyboardService.IsKeyDown("d"))
-            {
-                direction = new Point(Constants.CELL_SIZE, 0);
-            }
+                // right 1
+                if (keyboardService.IsKeyDown("d"))
+                {
+                    direction = new Point(Constants.CELL_SIZE, 0);
+                }
 
-            // up 1
-            if (keyboardService.IsKeyDown("w"))
-            {
-                direction = new Point(0, -Constants.CELL_SIZE);
-            }
+                // up 1
+                if (keyboardService.IsKeyDown("w"))
+                {
+                    direction = new Point(0, -Constants.CELL_SIZE);
+                }
 
-            // down 1
-            if (keyboardService.IsKeyDown("s"))
-            {
-                direction = new Point(0, Constants.CELL_SIZE);
+                // down 1
+                if (keyboardService.IsKeyDown("s"))
+                {
+                    direction = new Point(0, Constants.CELL_SIZE);
+                }
             }
-            
-            // left 2
-            if (keyboardService.IsKeyDown("j"))
-            {
-                direction = new Point(-Constants.CELL_SIZE, 0);
-            }
+            else if (player == "player2"){
+                // left 2
+                if (keyboardService.IsKeyDown("j"))
+                {
+                    direction = new Point(-Constants.CELL_SIZE, 0);
+                }
 
-            // right 2
-            if (keyboardService.IsKeyDown("l"))
-            {
-                direction = new Point(Constants.CELL_SIZE, 0);
-            }
+                // right 2
+                if (keyboardService.IsKeyDown("l"))
+                {
+                    direction = new Point(Constants.CELL_SIZE, 0);
+                }
 
-            // up 2
-            if (keyboardService.IsKeyDown("i"))
-            {
-                direction = new Point(0, -Constants.CELL_SIZE);
-            }
+                // up 2
+                if (keyboardService.IsKeyDown("i"))
+                {
+                    direction = new Point(0, -Constants.CELL_SIZE);
+                }
 
-            // down 2
-            if (keyboardService.IsKeyDown("k"))
-            {
-                direction = new Point(0, Constants.CELL_SIZE);
+                // down 2
+                if (keyboardService.IsKeyDown("k"))
+                {
+                    direction = new Point(0, Constants.CELL_SIZE);
+                }
             }
 
             Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");

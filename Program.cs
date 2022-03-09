@@ -2,6 +2,7 @@
 using cse210_cycles.Game.Directing;
 using cse210_cycles.Game.Scripting;
 using cse210_cycles.Game.Services;
+using cse210_cycles.Game;
 
 
 namespace cse210_cycles
@@ -22,16 +23,15 @@ namespace cse210_cycles
             //SoundService ss = new SoundService();
             //string filename = "Game/Services/roblox-death-sound_1.mp3" ;
             //ss.PlaySound(filename); 
-                                     
-            // Just a test - for now
-            Color player1 = new Color(255,0,0);
-            Color player2 = new Color(0,0,255);
             
             // create the cast 
             Cast cast = new Cast();
             // cast.AddActor("food", new Food());
-            cast.AddActor("cycle", new Cycle(player1));
-            cast.AddActor("cycle", new Cycle(player2));
+            Cycle cycle1 = new Cycle(Constants.RED, "player1");
+            Cycle cycle2 = new Cycle(Constants.BLUE, "player2");
+
+            cast.AddActor("cycle", cycle1);
+            cast.AddActor("cycle", cycle2);
             // cast.AddActor("score", new Score());
 
             // create the services

@@ -20,11 +20,11 @@ namespace cse210_cycles.Game.Casting
         /// <summary>
         /// Constructs a new instance of a Snake.
         /// </summary>
-        public Cycle(Color color)
+        public Cycle(Color color, string player)
         {
             SetColor(color);
-            trailColor = GetColor();
-            PrepareBody();
+            this.trailColor = GetColor();
+            PrepareBody(player);
         }
 
         /// <summary>
@@ -79,14 +79,15 @@ namespace cse210_cycles.Game.Casting
         /// <inheritdoc/>
         public override void MoveNext()
         {
-            if (jumpCooldownTick >= Constants.JUMP_COOLDOWN_CONDITION){SetColor(trailColor);} //if ready to jump, set color to the trail color
-            else{SetColor(Constants.WHITE);} //if NOT ready to jump, set color to white
+            if (jumpCooldownTick >= Constants.JUMP_COOLDOWN_CONDITION){GetHead().SetColor(trailColor);} //if ready to jump, set color to the trail color
+            else{GetHead().SetColor(Constants.WHITE);} //else, set color to white
+            //if(trailColor == Constants.RED){Console.WriteLine(jumpCooldownTick);} //print Red's cooldown tick
 
-            if (jumpCooldownTick > Constants.JUMP_FRAME_DURATION){
-                this.SetFontSize(this.GetFontSize() + 10);
+            if (jumpCooldownTick <= Constants.JUMP_FRAME_DURATION){
+                GetHead().SetFontSize(Constants.FONT_SIZE + Constants.JUMP_HEIGHT);
             }
             else{
-                this.SetFontSize(Constants.FONT_SIZE);
+                GetHead().SetFontSize(Constants.FONT_SIZE);
             }
 
             segments[0].MoveNext();
@@ -107,10 +108,17 @@ namespace cse210_cycles.Game.Casting
         /// <summary>
         /// Prepares the snake body for moving.
         /// </summary>
-        private void PrepareBody()
+        private void PrepareBody(string player)
         {
             int x = Constants.MAX_X / 2;
             int y = Constants.MAX_Y / 2;
+
+            if (player == "player1"){
+                x = Constants.MAX_X / 4;
+            }
+            if (player == "player2"){
+                x = Constants.MAX_X / 4 * 3;
+            }
 
             for (int i = 0; i < Constants.CYCLE_START_LENGTH; i++)
             {
@@ -127,7 +135,6 @@ namespace cse210_cycles.Game.Casting
                 segments.Add(segment);
             }
         }
-
 
         public void SetDrawing(bool isDrawing){
             this.isDrawing = isDrawing;

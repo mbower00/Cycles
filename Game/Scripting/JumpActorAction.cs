@@ -6,7 +6,6 @@ namespace cse210_cycles.Game.Scripting
 {
     public class JumpActorAction : Action
     {
-        Cycle cycle; 
         KeyboardService keyboardService;
         private Point direction = new Point(Constants.CELL_SIZE, 0);
         public JumpActorAction(KeyboardService keyboardService)
@@ -27,18 +26,22 @@ namespace cse210_cycles.Game.Scripting
                 cycle = cycle2;
             }
             
-            if (keyboardService.IsKeyDown("e") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
-            {
-                cycle.SetDrawing(false);
-                cycle.SetIsIncognito(true);
-                cycle.SetJumpCooldownTick(0);
+            if (player == "player1"){
+                if (keyboardService.IsKeyDown("e") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
+                {
+                    cycle.SetDrawing(false);
+                    cycle.SetIsIncognito(true);
+                    cycle.SetJumpCooldownTick(0);
+                }
             }
 
-             if (keyboardService.IsKeyDown("u") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
-            {
-                cycle.SetDrawing(false);
-                cycle.SetIsIncognito(true);
-                cycle.SetJumpCooldownTick(0);
+            else if (player == "player2"){
+                if (keyboardService.IsKeyDown("u") && cycle.GetJumpCooldownTick() >= Constants.JUMP_COOLDOWN_CONDITION)
+                {
+                    cycle.SetDrawing(false);
+                    cycle.SetIsIncognito(true);
+                    cycle.SetJumpCooldownTick(0);
+                }
             }
 
             if (cycle.GetJumpCooldownTick() > Constants.JUMP_FRAME_DURATION){

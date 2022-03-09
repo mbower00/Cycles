@@ -24,27 +24,28 @@ namespace cse210_cycles.Game.Scripting
         /// <inheritdoc/> 
         public void Execute(Cast cast, Script script, string player)
         {
-            // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
-            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
-            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
-            Cycle cycle = cycle1;
-            if (player == "player1"){
-                cycle = cycle1;
+            if (player == "player1") //we will only run this method once per frame
+            {
+                // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
+                Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+                Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+                Cycle cycle = cycle1;
+                if (player == "player1"){
+                    cycle = cycle1;
+                }
+                else if (player == "player2"){
+                    cycle = cycle2;
+                }
+                List<Actor> segments = cycle1.GetSegments();
+                List<Actor> segments2 = cycle2.GetSegments();
+                segments.AddRange(segments2);
+                Actor score = cast.GetFirstActor("score");
+                Actor food = cast.GetFirstActor("food");
+                List<Actor> messages = cast.GetActors("messages");
+                videoService.ClearBuffer();
+                videoService.DrawActors(segments);
+                videoService.FlushBuffer();
             }
-            else if (player == "player2"){
-                cycle = cycle2;
-            }
-            List<Actor> segments = cycle.GetSegments();
-            Actor score = cast.GetFirstActor("score");
-            Actor food = cast.GetFirstActor("food");
-            List<Actor> messages = cast.GetActors("messages");
-            
-            videoService.ClearBuffer();
-            videoService.DrawActors(segments);
-            videoService.DrawActor(score);
-            videoService.DrawActor(food);
-            videoService.DrawActors(messages);
-            videoService.FlushBuffer();
         }
     }
 }

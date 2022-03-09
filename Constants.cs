@@ -23,6 +23,7 @@ namespace cse210_cycles.Game
         public static string CAPTION = "CYCLE";
         public static int CYCLE_START_LENGTH = 1;
         public static int JUMP_FRAME_DURATION = 5;
+        public static int JUMP_HEIGHT = 10; //the amount that a jumping cycle grows
         public static int JUMP_COOLDOWN_CONDITION = 20; //in frames
         public static Color RED = new Color(255, 0, 0);
         public static Color YELLOW = new Color(255, 255, 0);
