@@ -13,7 +13,8 @@ namespace cse210_cycles.Game.Scripting
     public class SteerActorsAction : Action
     {
         private KeyboardService keyboardService;
-        private Point direction = new Point(Constants.CELL_SIZE, 0);
+        private Point direction1 = new Point(Constants.CELL_SIZE, 0);
+        private Point direction2 = new Point(Constants.CELL_SIZE, 0);
 
         /// <summary>
         /// Constructs a new instance of ControlActorsAction using the given KeyboardService.
@@ -26,68 +27,61 @@ namespace cse210_cycles.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script, string player)
         {
-            if (player == "player1"){
+            if (player == "player1") // only execute this method once per frame
+            {
                 // left 1
                 if (keyboardService.IsKeyDown("a"))
                 {
-                    direction = new Point(-Constants.CELL_SIZE, 0);
+                    direction1 = new Point(-Constants.CELL_SIZE, 0);
                 }
 
                 // right 1
                 if (keyboardService.IsKeyDown("d"))
                 {
-                    direction = new Point(Constants.CELL_SIZE, 0);
+                    direction1 = new Point(Constants.CELL_SIZE, 0);
                 }
 
                 // up 1
                 if (keyboardService.IsKeyDown("w"))
                 {
-                    direction = new Point(0, -Constants.CELL_SIZE);
+                    direction1 = new Point(0, -Constants.CELL_SIZE);
                 }
 
                 // down 1
                 if (keyboardService.IsKeyDown("s"))
                 {
-                    direction = new Point(0, Constants.CELL_SIZE);
+                    direction1 = new Point(0, Constants.CELL_SIZE);
                 }
-            }
-            else if (player == "player2"){
+
                 // left 2
                 if (keyboardService.IsKeyDown("j"))
                 {
-                    direction = new Point(-Constants.CELL_SIZE, 0);
+                    direction2 = new Point(-Constants.CELL_SIZE, 0);
                 }
 
                 // right 2
                 if (keyboardService.IsKeyDown("l"))
                 {
-                    direction = new Point(Constants.CELL_SIZE, 0);
+                    direction2 = new Point(Constants.CELL_SIZE, 0);
                 }
 
                 // up 2
                 if (keyboardService.IsKeyDown("i"))
                 {
-                    direction = new Point(0, -Constants.CELL_SIZE);
+                    direction2 = new Point(0, -Constants.CELL_SIZE);
                 }
 
                 // down 2
                 if (keyboardService.IsKeyDown("k"))
                 {
-                    direction = new Point(0, Constants.CELL_SIZE);
+                    direction2 = new Point(0, Constants.CELL_SIZE);
                 }
-            }
 
-            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
-            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
-            Cycle cycle = cycle1;
-            if (player == "player1"){
-                cycle = cycle1;
+                Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+                Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+                cycle1.TurnHead(direction1);
+                cycle2.TurnHead(direction2);
             }
-            else if (player == "player2"){
-                cycle = cycle2;
-            }
-            cycle.TurnHead(direction);
-
         }
     }
 }
