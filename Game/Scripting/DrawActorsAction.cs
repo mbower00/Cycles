@@ -25,12 +25,14 @@ namespace cse210_cycles.Game.Scripting
         public void Execute(Cast cast, Script script, string player)
         {
             // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
-            if(player == "player1"){
-                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
-                return cycle;}
-            else if(player == "player2"){
-                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
-                return cycle;
+            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+            Cycle cycle = cycle1;
+            if (player == "player1"){
+                cycle = cycle1;
+            }
+            else if (player == "player2"){
+                cycle = cycle2;
             }
             List<Actor> segments = cycle.GetSegments();
             Actor score = cast.GetFirstActor("score");

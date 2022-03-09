@@ -61,7 +61,11 @@ namespace cse210_cycles.Game.Scripting
         /// <param name="cast">The cast of actors.</param>
         private void HandleSegmentCollisions(Cast cast, string player)
         {
+<<<<<<< HEAD
             
+=======
+            // Cycle cycle = (Cycle)cast.GetFirstActor("cycle"); //Original Code
+>>>>>>> f5d3127973fa605d2a77018fef2bae842c92e947
             Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
             Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
             Cycle cycle = cycle1;
@@ -87,7 +91,15 @@ namespace cse210_cycles.Game.Scripting
         {
             if (isGameOver == true)
             {
-                Snake snake = (Snake)cast.GetFirstActor("snake");
+                Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+                Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+                Cycle cycle = cycle1;
+                if (player == "player1"){
+                    cycle = cycle1;
+                }
+                else if (player == "player2"){
+                    cycle = cycle2;
+                }
                 List<Actor> segments = snake.GetSegments();
                 Food food = (Food)cast.GetFirstActor("food");
 

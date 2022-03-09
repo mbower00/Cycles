@@ -88,7 +88,8 @@ namespace cse210_cycles.Game.Casting
 
             segments[0].MoveNext();
             if (isDrawing){GrowTail(1);} //if drawing, add a segment
-            jumpCooldownTick++;
+
+            jumpCooldownTick++; //increment the cooldown
         }
 
         /// <summary>
@@ -125,27 +126,27 @@ namespace cse210_cycles.Game.Casting
         }
 
 
-        private void SetIsDrawing(bool isDrawing){
+        public void SetIsDrawing(bool isDrawing){
             this.isDrawing = isDrawing;
         }
 
-        private bool GetIsDrawing(){
+        public bool GetIsDrawing(){
             return isDrawing;
         }
 
-        private void SetIsIncognito(bool isIncognito){
+        public void SetIsIncognito(bool isIncognito){
             this.isIncognito = isIncognito;
         }
 
-        private bool GetIsIncognito(){
+        public bool GetIsIncognito(){
             return isIncognito;
         }
 
-        private void SetJumpCooldownTick(int jumpCooldownTick){
+        public void SetJumpCooldownTick(int jumpCooldownTick){
             this.jumpCooldownTick = jumpCooldownTick;
         }
 
-        private int GetJumpCooldownTick(){
+        public int GetJumpCooldownTick(){
             return jumpCooldownTick;
         }
     }
