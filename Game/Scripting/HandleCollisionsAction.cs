@@ -62,11 +62,14 @@ namespace cse210_cycles.Game.Scripting
         private void HandleSegmentCollisions(Cast cast, string player)
         {
             
+            Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
+            Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
+            Cycle cycle = cycle1;
             if (player == "player1"){
-                Cycle cycle = (Cycle)cast.GetFirstActor("cycle");
+                cycle = cycle1;
             }
             else if (player == "player2"){
-                Cycle cycle = (Cycle)cast.GetSecondActor("cycle");
+                cycle = cycle2;
             }
             Actor head = cycle.GetHead();
             List<Actor> body = cycle.GetBody();
