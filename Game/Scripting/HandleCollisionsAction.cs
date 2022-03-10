@@ -17,6 +17,7 @@ namespace cse210_cycles.Game.Scripting
     public class HandleCollisionsAction : Action
     {
         private bool isGameOver = false;
+        private bool isExecutionDirectlyAfterPlayer1Lost = false; //the purpose of this bool is to handle if there is a tie
 
         /// <summary>
         /// Constructs a new instance of HandleCollisionsAction.
@@ -28,7 +29,7 @@ namespace cse210_cycles.Game.Scripting
         /// <inheritdoc/>
         public void Execute(Cast cast, Script script, string player)
         {
-            if (isGameOver == false)
+            if (isGameOver == false || isExecutionDirectlyAfterPlayer1Lost)
             {
                 // HandleFoodCollisions(cast, player);
                 HandleSegmentCollisions(cast, player);
@@ -83,7 +84,8 @@ namespace cse210_cycles.Game.Scripting
             {
                 if (segment.GetPosition().Equals(head.GetPosition()) && !cycle.GetIsIncognito())
                 {
-                    isGameOver = true;
+                    if(player == "player1"){isExecutionDirectlyAfterPlayer1Lost = true;}
+                    else if(player == "player2"){isGameOver = true;}
                 }
                 //else if (segment.GetPosition().Equals(head2.GetPosition()))
                 //{
@@ -105,7 +107,7 @@ namespace cse210_cycles.Game.Scripting
 
         private void HandleGameOver(Cast cast, string player)
         {
-            if (isGameOver == true)
+            if (isGameOver == true || (isExecutionDirectlyAfterPlayer1Lost && player == "player2"))
             {
                 Cycle cycle1 = (Cycle)cast.GetFirstActor("cycle");
                 Cycle cycle2 = (Cycle)cast.GetSecondActor("cycle");
@@ -126,9 +128,31 @@ namespace cse210_cycles.Game.Scripting
                 Point position = new Point(x, y);
 
                 Actor message = new Actor();
-                message.SetText("Game Over!");
-                message.SetPosition(position);
-                cast.AddActor("messages", message);
+                if (isExecutionDirectlyAfterPlayer1Lost && !isGameOver){ //only p1 loses
+                    message.SetColor(Constants.BLUE);
+                    message.SetText("Player Two wins!");
+                    message.SetPosition(position);
+                    message.SetFontSize(Constants.FONT_SIZE * 3);
+                    cast.AddActor("messages", message);
+                }
+                else if (!isExecutionDirectlyAfterPlayer1Lost && isGameOver){ //only p2 loses
+                    message.SetColor(Constants.RED);
+                    message.SetText("Player One wins!");
+                    message.SetPosition(position);
+                    message.SetFontSize(Constants.FONT_SIZE * 3);
+                    cast.AddActor("messages", message);
+                }
+                else if ((isExecutionDirectlyAfterPlayer1Lost && isGameOver)){ //both players lose
+                    message.SetColor(Constants.WHITE);
+                    message.SetText("Both players lose!");
+                    message.SetPosition(position);
+                    message.SetFontSize(Constants.FONT_SIZE * 3);
+                    cast.AddActor("messages", message);
+                }
+
+                // make sure these are set to their proper positions for the game over stage
+                isExecutionDirectlyAfterPlayer1Lost = false;
+                isGameOver = true;
 
                 // make everything white
                 foreach (Actor segment in segments1)

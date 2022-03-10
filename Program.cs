@@ -26,13 +26,13 @@ namespace cse210_cycles
             
             // create the cast 
             Cast cast = new Cast();
-            // cast.AddActor("food", new Food());
+
             Cycle cycle1 = new Cycle(Constants.RED, "player1");
             Cycle cycle2 = new Cycle(Constants.BLUE, "player2");
-
             cast.AddActor("cycle", cycle1);
             cast.AddActor("cycle", cycle2);
-            // cast.AddActor("score", new Score());
+
+            //CREATE PLAYER TAG OBJECTS IN THE "messages" CAST GROUP
 
             // create the services
             KeyboardService keyboardService = new KeyboardService();
