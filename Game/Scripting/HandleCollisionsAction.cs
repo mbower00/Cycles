@@ -82,7 +82,7 @@ namespace cse210_cycles.Game.Scripting
 
             foreach (Actor segment in bodies)
             {
-                if (segment.GetPosition().Equals(head.GetPosition()) && !cycle.GetIsIncognito())
+                if ((segment.GetPosition().Equals(head.GetPosition()) && !cycle.GetIsIncognito()) && segment.GetText() != "@" )
                 {
                     if(player == "player1"){isExecutionDirectlyAfterPlayer1Lost = true;}
                     else if(player == "player2"){isGameOver = true;}
@@ -129,21 +129,21 @@ namespace cse210_cycles.Game.Scripting
 
                 Actor message = new Actor();
                 if (isExecutionDirectlyAfterPlayer1Lost && !isGameOver){ //only p1 loses
-                    message.SetColor(Constants.BLUE);
+                    message.SetColor(Constants.BANNER_BLUE);
                     message.SetText("Player Two wins!");
                     message.SetPosition(position);
                     message.SetFontSize(Constants.FONT_SIZE * 3);
                     cast.AddActor("messages", message);
                 }
                 else if (!isExecutionDirectlyAfterPlayer1Lost && isGameOver){ //only p2 loses
-                    message.SetColor(Constants.RED);
+                    message.SetColor(Constants.BANNER_RED);
                     message.SetText("Player One wins!");
                     message.SetPosition(position);
                     message.SetFontSize(Constants.FONT_SIZE * 3);
                     cast.AddActor("messages", message);
                 }
                 else if ((isExecutionDirectlyAfterPlayer1Lost && isGameOver)){ //both players lose
-                    message.SetColor(Constants.WHITE);
+                    message.SetColor(Constants.BANNER_WHITE);
                     message.SetText("Both players lose!");
                     message.SetPosition(position);
                     message.SetFontSize(Constants.FONT_SIZE * 3);
@@ -155,6 +155,8 @@ namespace cse210_cycles.Game.Scripting
                 isGameOver = true;
 
                 // make everything white
+                cycle1.SetTrailColor(Constants.WHITE);
+                cycle2.SetTrailColor(Constants.WHITE);
                 foreach (Actor segment in segments1)
                 {
                     segment.SetColor(Constants.WHITE);

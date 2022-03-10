@@ -33,6 +33,25 @@ namespace cse210_cycles
             cast.AddActor("cycle", cycle2);
 
             //CREATE PLAYER TAG OBJECTS IN THE "messages" CAST GROUP
+            Actor playerTag1 = new Actor();
+            Actor playerTag2 = new Actor();
+
+            ///setting the banners to the propspective player colors
+            playerTag1.SetColor(Constants.BANNER_RED);
+            playerTag2.SetColor(Constants.BANNER_BLUE);
+
+
+            ///Creating Positions for the player banners that show up in their prospective corners
+            Point position1 = new Point(Constants.MAX_X-900, Constants.MAX_Y-600);
+            Point position2 = new Point(Constants.MAX_X, Constants.MAX_Y-600); 
+            playerTag1.SetPosition(position1); 
+            playerTag2.SetPosition(position2);
+
+            ///Instructions and the full text of the banner
+            playerTag1.SetText("Player 1: WASD & E = Jump"); 
+            playerTag2.SetText("Player 2: IJKL & U = Jump");
+
+
 
             // create the services
             KeyboardService keyboardService = new KeyboardService();

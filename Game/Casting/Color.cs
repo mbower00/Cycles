@@ -22,11 +22,12 @@ namespace cse210_cycles.Game.Casting
         /// <param name="red">The given red value (0-255).</param>
         /// <param name="green">The given green value (0-255).</param>
         /// <param name="blue">The given blue value (0-255).</param>
-        public Color(int red, int green, int blue)
+        public Color(int red, int green, int blue, int alpha = 255)
         {
             this.red = red;
             this.green = green;
             this.blue = blue;
+            this.alpha = alpha;
         }
 
         /// <summary>

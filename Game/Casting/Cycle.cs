@@ -159,5 +159,13 @@ namespace cse210_cycles.Game.Casting
         public int GetJumpCooldownTick(){
             return jumpCooldownTick;
         }
+
+        public void SetTrailColor(Color trailColor){
+            this.trailColor = trailColor;
+        }
+
+        public Color GetTrailColor(){
+            return trailColor;
+        }
     }
 }

@@ -40,10 +40,11 @@ namespace cse210_cycles.Game.Scripting
                 List<Actor> segments2 = cycle2.GetSegments();
                 segments.AddRange(segments2);
                 Actor score = cast.GetFirstActor("score");
-                Actor food = cast.GetFirstActor("food");
+                // food = cast.GetFirstActor("food");
                 List<Actor> messages = cast.GetActors("messages");
                 videoService.ClearBuffer();
                 videoService.DrawActors(segments);
+                videoService.DrawActors(messages);
                 videoService.FlushBuffer();
             }
         }

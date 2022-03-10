@@ -26,11 +26,13 @@ namespace cse210_cycles.Game
         public static int JUMP_HEIGHT = 10; //the amount that a jumping cycle grows
         public static int JUMP_COOLDOWN_CONDITION = 20; //in frames
         public static Color RED = new Color(255, 0, 0);
+        public static Color BANNER_RED = new Color(255, 0, 0, 175);
         public static Color YELLOW = new Color(255, 255, 0);
         public static Color GREEN = new Color(0, 255, 0);
         public static Color BLUE = new Color(0, 0, 255);
+        public static Color BANNER_BLUE = new Color(0, 0, 255, 175);
         public static Color WHITE = new Color(255, 255, 255);
-
+        public static Color BANNER_WHITE = new Color(255, 255, 255, 175);
     }
 }
 
