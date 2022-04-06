@@ -35,6 +35,12 @@ namespace cse210_cycles.Game.Scripting
                 HandleSegmentCollisions(cast, player);
                 HandleGameOver(cast, player);
             }
+
+            if (isGameOver == true){
+                Actor timerActor = cast.GetFirstActor("timer");
+                Timer timer = (Timer) timerActor;
+                timer.SetFrameTick(-5);
+            }
         }
 
 /*  This is the food enlargemrnt code

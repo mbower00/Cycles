@@ -52,6 +52,17 @@ namespace cse210_cycles
             playerTag2.SetText("Player 2: IJKL & U = Jump");
 
 
+            //Create the _timer_ actor
+            Game.Casting.Timer timer = new Game.Casting.Timer();
+            timer.SetColor(Constants.BANNER_WHITE);
+            Point timerStartingPoint = new Point(Constants.MAX_X / 2 - 50, 0 + (Constants.MAX_Y - 100));
+            timer.SetPosition(timerStartingPoint);
+            timer.SetText("");
+            timer.SetFontSize(50);
+            //Add timer to cast
+            cast.AddActor("timer", timer);
+
+
 
             // create the services
             KeyboardService keyboardService = new KeyboardService();
@@ -62,6 +73,7 @@ namespace cse210_cycles
             script.AddAction("input", new SteerActorsAction(keyboardService));
             script.AddAction("input", new JumpActorAction(keyboardService));
             script.AddAction("update", new MoveActorsAction());
+            script.AddAction("update", new ManageTimerAction());
             script.AddAction("update", new HandleCollisionsAction());
             script.AddAction("output", new DrawActorsAction(videoService));
 

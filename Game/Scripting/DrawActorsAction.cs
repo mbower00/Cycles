@@ -45,6 +45,7 @@ namespace cse210_cycles.Game.Scripting
                 videoService.ClearBuffer();
                 videoService.DrawActors(segments);
                 videoService.DrawActors(messages);
+                videoService.DrawActor(cast.GetFirstActor("timer"));
                 videoService.FlushBuffer();
             }
         }
